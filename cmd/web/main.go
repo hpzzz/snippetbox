@@ -25,15 +25,17 @@ type application struct {
 	infoLog *log.Logger
 	session *sessions.Session
 	snippets interface {
-		Insert(string, string, string) (int, error)
+		Insert(string, string, string, int) (int, error)
 		Get(int) (*models.Snippet, error)
 		Latest() ([]*models.Snippet, error)
+		All() ([]*models.Snippet, error)
 	}
 	templateCache map[string]*template.Template
 	users interface {
 		Insert(string, string, string) error
 		Authenticate(string, string) (int, error)
 		Get(int) (*models.User, error)
+		GetLatest() ([]*models.User, error)
 	}
 }
 

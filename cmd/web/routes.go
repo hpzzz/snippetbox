@@ -19,7 +19,10 @@ func (app *application) routes() http.Handler {
 	mux.Post("/snippet/create", dynamicMiddleware.Append(app.requireAuthenticatedUser).ThenFunc(app.createSnippet))
 	mux.Get("/snippet/:id", dynamicMiddleware.ThenFunc(app.showSnippet))
 	
-	mux.Get("/api/", dynamicMiddleware.ThenFunc(app.handleAPI))
+	mux.Get("/api/latest", dynamicMiddleware.ThenFunc(app.handleAPIlatest))
+	mux.Get("/api/all", dynamicMiddleware.ThenFunc(app.handleAPIall))
+
+	mux.Get("/user/:id", dynamicMiddleware.ThenFunc(app.handleShowUser))
 
 	mux.Get("/user/signup", dynamicMiddleware.ThenFunc(app.signupUserForm))
 	mux.Post("/user/signup", dynamicMiddleware.ThenFunc(app.signupUser))

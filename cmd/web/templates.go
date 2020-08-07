@@ -16,6 +16,8 @@ type templateData struct {
 	Form *forms.Form
 	Snippet *models.Snippet
 	Snippets []*models.Snippet
+	User string
+	Users []*models.User
 }
 
 

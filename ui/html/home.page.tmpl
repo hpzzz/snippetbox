@@ -2,18 +2,23 @@
 {{define "title"}}Home{{end}}
 {{define "body"}}
 <h2>Latest Snippets</h2>
+{{ $snippets := .Snippets }}
+{{ $users := .Users }}
 {{if .Snippets}}
     <table>
         <tr>
             <th>Title</th>
             <th>Created</th>
             <th>ID</th>
+            <th>User</th>
         </tr>
-        {{range .Snippets}}
+        {{range $i, $snippet := .Snippets }}
+        {{$user := index $.Users $i}}
         <tr>
-            <td><a href='/snippet/{{.ID}}'>{{.Title}}</a></td>
-            <td>{{humanDate .Created}}</td>
-            <td>#{{.ID}}</td>
+            <td><a href='/snippet/{{$snippet.ID}}'>{{$snippet.Title}}</a></td>
+            <td>{{humanDate $snippet.Created}}</td>
+            <td>#{{$snippet.ID}}</td>
+            <td>{{$user.Name}}</td>
         </tr>
         {{end}}
     </table>

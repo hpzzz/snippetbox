@@ -72,3 +72,32 @@ func (m *UserModel) Get(id int) (*models.User, error) {
 	}
 	return s, nil
 }
+
+func (m *UserModel) GetLatest() ([]*models.User, error) {
+	stmt := `SELECT users.id, users.name, users.email, users.created FROM users, snippets WHERE users.id = snippets.creator AND expires > UTC_TIMESTAMP() ORDER BY created DESC LIMIT 10`
+	rows, err := m.DB.Query(stmt)
+	//always before error checking
+	defer rows.Close()
+
+	users := []*models.User{}
+
+	for rows.Next() {
+		u := &models.User{}
+		err := rows.Scan(&u.ID, &u.Name, &u.Email, &u.Created)
+
+		if err != nil {
+			return nil, err
+		}
+
+		users = append(users, u)
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, err
+	}
+	return users, nil
+}
+
+func (m *UserModel) GetUser() () {
+	
+}

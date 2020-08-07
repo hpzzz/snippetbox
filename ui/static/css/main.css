@@ -232,6 +232,8 @@ button:hover {
     padding: 18px;
     border-top: 1px solid #E4E5E7;
     border-bottom: 1px solid #E4E5E7;
+    white-space: initial;
+    overflow-wrap: break-word;
 }
 
 .snippet .metadata {
@@ -239,6 +241,10 @@ button:hover {
     color: #6A6C6F;
     padding: 0.75em 18px;
     overflow: auto;
+    
+}
+.snippet .code {
+    overflow-wrap: break-word;
 }
 
 .snippet .metadata span {

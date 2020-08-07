@@ -6,23 +6,24 @@ import (
 )
 
 var (
-	ErrNoRecord = errors.New("models: no matching record found")
+	ErrNoRecord           = errors.New("models: no matching record found")
 	ErrInvalidCredentials = errors.New("models: invalid credentials")
-	ErrDuplicateEmail = errors.New("models: duplicate email")
-) 
+	ErrDuplicateEmail     = errors.New("models: duplicate email")
+)
 
 type Snippet struct {
-	ID int
-	Title string
-	Content string
-	Created time.Time
-	Expires time.Time
+	ID      int       `json:"id"`
+	Title   string    `json:"title"`
+	Content string    `json:"content"`
+	Created time.Time `json:"created"`
+	Expires time.Time `json:"expires"`
+	Creator int `json:"creator"`
 }
 
 type User struct {
-	ID int
-	Name string
-	Email string
-	HashedPassword []byte
-	Created time.Time
+	ID             int       `json:"id"`
+	Name           string    `json:"name"`
+	Email          string    `json:"-"`
+	HashedPassword []byte    `json:"-"`
+	Created        time.Time `json:"title"`
 }
